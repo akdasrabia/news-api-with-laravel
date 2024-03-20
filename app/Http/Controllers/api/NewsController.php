@@ -24,7 +24,7 @@ class NewsController extends Controller
             // Cache'teki haber sayısı ile cache'teki haberlerin sayısı eşitse, sadece cache'teki veriyi döndür
             if (count($cachedNews) == $cachedNewsCount) {
                 return response()->json([
-                    "cache" => "yes",
+                    "cache" => true,
                     "status" => "success",
                     'news' => $cachedNews
                 ], 200);
@@ -39,11 +39,11 @@ class NewsController extends Controller
             ->get();
     
         // Verileri cache'e yaz ve cache'teki haber sayısını güncelle
-        Cache::put('news', $news, now()->addMinutes(1)); 
-        Cache::put('news_count', count($news), now()->addMinutes(1)); 
+        Cache::put('news', $news, now()->addMinutes(60)); 
+        Cache::put('news_count', count($news), now()->addMinutes(60)); 
     
         return response()->json([
-            "cache" => "no",
+            "cache" => false,
             "status" => "success",
             'news' => $news
         ], 200);

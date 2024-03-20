@@ -15,7 +15,6 @@
     
     <h3>{{ $news->title }}</h3>
     
-    <p>{{ $news->content }}</p>
             
     <p>Thank you for your interest.</p>
 </body>
